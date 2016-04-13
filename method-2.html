@@ -1,0 +1,56 @@
+<!Doctype>
+<html data-ng-app="demoApp">
+<head>
+<title>Module-Controller Example - Method-2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js" ></script>
+
+<style>
+.container{text-align:left;padding:50px 0 50px 0;}
+.marginTop{margin-top:30px;}
+.marginTop{margin-top:20px;}
+.bgsetcolor{background:cyan;}
+</style>
+<script>
+var demoApp = angular.module('demoApp',[ ]);
+var myController={};
+myController.simpleController=function($scope){
+$scope.customers=[{"name":"Desh","location":"Noida"},
+				{"name":"Deepak","location":"Delhi"},
+				{"name":"Ajay","location":"Noida"},
+				{"name":"Shiv","location":"Delhi"},
+				{"name":"Manjeet","location":"Chandigarh"}];
+};
+demoApp.controller(myController);
+</script>
+</head>
+<body>
+<div id="wrapper" class="container" data-ng-controller='simpleController'>
+	<div>
+		<label for="nm">Name</label>
+		<input id="nm" type="text" name="nameText" data-ng-model="nameText" />
+	</div>
+	
+	
+	<div id="bindDir" class="marginTop">
+		<table class="table" border="1" cellspacing="0" cellpadding="3">
+		<tr><td>Sr.</td><td>Name</td><td>Location</td></tr>
+		<tr data-ng-repeat="cust in customers | orderBy:'name' | filter:nameText" data-ng-class="{'bgsetcolor':$index%2==0}">
+		<td>{{$index+1}}</td><td>{{cust.name | uppercase }}</td><td>{{cust.location | lowercase}}</td>
+		</tr>
+		</table>
+	</div>
+	<!--
+	ng-repeat directive special variable:
+	1. $index
+	2. $first
+	3. $middle
+	4. $last
+
+	-->
+	
+</div>
+
+
+</body>
+</html>
